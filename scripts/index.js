@@ -35,16 +35,17 @@ const setupGuides = (data) => {
     data.forEach(doc => {
       const ehealth =doc.data();
       const li = `
-       <ul><a href="#" id="medicalTitle">${ehealth.title} </a>
-    <button type="button" onclick="deleteData()">Delete</button>
-  
+      <ul><a href="#" id="medicalTitle">${ehealth.title} </a>
+      <button type="button" onclick="deleteData()">Delete</button>
     
-    <li><div class="collapsible-header grey lighten-4"  id="medicalDate">ΗΜΕΡΟΜΗΝΙΑ: ${ehealth.medicalHistoryDate} </div></li>
-    <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΙΑΤΡΙΚΗ ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
-    <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΙΑΤΡΙΚΗ ΣΥΝΤΑΓΗ: ${ehealth.content} </div></li>
-    <li><div class="collapsible-header grey lighten-4" id="medicalDrName">ΙΑΤΡΟΣ: ${ehealth.drName} </div></li>
-    
-    </ul>
+      
+      <li><div class="collapsible-header grey lighten-4"  id="medicalDate">ΗΜΕΡΟΜΗΝΙΑ: ${ehealth.medicalHistoryDate} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΙΑΤΡΙΚΗ ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΙΑΤΡΙΚΗ ΣΥΝΤΑΓΗ: ${ehealth.content} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDrName">ΙΑΤΡΟΣ: ${ehealth.drName} </div></li>
+      
+      </ul>
+      
       `;
       html += li;
     });
