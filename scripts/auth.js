@@ -12,7 +12,24 @@ auth.onAuthStateChanged(user => {
     }
 });
 
+// const medicalList = document.querySelector('#medicalTitle');
+// function renderMedical(doc){
+//     let li = document.createElement('li');
+//     let cross = document.createElement('div');
+//     cross.textContent = 'x';
+//     li.setAttribute('data-id', doc.id);
+//     li.appendChild(cross);
+//     medicalList.appendChild(li);
+//      // deleting data
+//      cross.addEventListener('click', (e) => {
+//         e.stopPropagation();
+//         let id = e.target.parentElement.parentElement.getAttribute('data-id');
+//         db.collection('eHealth').doc(currentUser.uid).collection('medicalRecords').doc(id).delete();
+//     });
+// }
+   
 
+  
 
 // create new guide
 const createForm = document.querySelector('#create-form');
@@ -23,6 +40,7 @@ createForm.addEventListener('submit', (e) => {
         medicalHistoryDate: createForm.medicalHistoryDate.value,
         diagnosis: createForm.diagnosis.value,
         content: createForm.content.value,
+        fileButton: createForm.fileButton.value,
         drName: createForm.drName.value
     }).then(() => {
         // close the create modal & reset form
@@ -44,18 +62,22 @@ signupForm.addEventListener('submit', (e) => {
     // get user info
     const email = signupForm['signup-email'].value;
     const password = signupForm['signup-password'].value;
-
-    // sign up the user & add firestore data
-    auth.createUserWithEmailAndPassword(email, password).then(cred => {
+    const confirmPassword = signupForm['signup-confirmPassword'].value;
+    if(password===confirmPassword){
+       // sign up the user & add firestore data
+        auth.createUserWithEmailAndPassword(email, password).then(cred => {
         return db.collection('users').doc(cred.user.uid).set({
-            bio: signupForm['signup-bio'].value
-        });
-    }).then(() => {
+            fullname: signupForm['signup-fullname'].value
+            });
+        }).then(() => {
         // close the signup modal & reset form
         const modal = document.querySelector('#modal-signup');
         M.Modal.getInstance(modal).close();
         signupForm.reset();
-    });
+        }); 
+    }else{
+        alert('Confirm password must be the same with the password')
+    }
 });
 
 // logout

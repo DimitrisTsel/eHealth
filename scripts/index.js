@@ -11,7 +11,7 @@ const setupUI = (user) => {
     db.collection('users').doc(user.uid).get().then(doc => {
       const html = `
         <div>Logged in as ${user.email}</div>
-        <div>${doc.data().bio}</div>
+        <div>${doc.data().fullname}</div>
       `;
       accountDetails.innerHTML = html;
     });
@@ -42,6 +42,7 @@ const setupGuides = (data) => {
       <li><div class="collapsible-header grey lighten-4"  id="medicalDate">ΗΜΕΡΟΜΗΝΙΑ: ${ehealth.medicalHistoryDate} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΙΑΤΡΙΚΗ ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΙΑΤΡΙΚΗ ΣΥΝΤΑΓΗ: ${ehealth.content} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalFile"> ${ehealth.fileButton} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalDrName">ΙΑΤΡΟΣ: ${ehealth.drName} </div></li>
       
       </ul>
@@ -51,7 +52,7 @@ const setupGuides = (data) => {
     });
     guideList.innerHTML = html
   } else {
-    guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>';
+    guideList.innerHTML = '<h5 class="center-align"></h5>';
   }
   
 
@@ -67,5 +68,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var items = document.querySelectorAll('.collapsible');
   M.Collapsible.init(items);
+
+});
+
+
+
+//Get elements
+var fileButton = document.getElementById('fileButton');
+storage = customApp.storage("gs://e-health-8dfcf.appspot.com");
+
+//Listen for file selection
+fileButton.addEventListener('change',function(e){
+  //Get file
+  var file = e.target.files[0];
+
+  //create storage ref
+  var spaceRef = storageRef.child('Medical_Files/'+ file.name);
+  //upload file
+  var task = storageRef.put(file);
 
 });

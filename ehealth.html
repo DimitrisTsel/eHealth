@@ -8,8 +8,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
+    
          <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
            <script src="pdf.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> 
@@ -61,8 +60,12 @@
                         <label for="signup-password">Choose password</label>
                     </div>
                     <div class="input-field">
-                        <input type="text" id="signup-bio" required />
-                        <label for="signup-bio">One Line Bio</label>
+                        <input type="password" id="signup-confirmPassword" required />
+                        <label for="signup-confirmPassword">Confirm Password</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" id="signup-fullname" required />
+                        <label for="signup-fullname">Full Name</label>
                     </div>
                     <button class="btn yellow darken-2 z-depth-0">Sign up</button>
                     <p class="error pink-text center-align"></p>
@@ -99,10 +102,10 @@
             </div>
         </div>
 
-        <!-- CREATE GUIDE MODAL -->
+        <!-- CREATE Medical Records -->
         <div id="modal-portfolio" class="modal">
             <div class="modal-content">
-                <h4>Portfolio</h4><br />
+                <h4>Medical Records</h4><br />
                 <form id="create-form">
 
                     <div class="input-field">
@@ -131,6 +134,12 @@
                     <div class="input-field">
                         <textarea id="content" class="materialize-textarea" required></textarea>
                         <label for="content">Prescription</label>
+                    </div>
+                    <div class="input-field">
+                        <label for="file">File</label>
+                        <br><br>
+                        <input type="file" id="fileButton">
+                        
                     </div>
                     <div class="input-field">
                         <input type="text" id="drName" required>
@@ -163,6 +172,7 @@
             var firebaseConfig = {
                 apiKey: "AIzaSyC_pWKQVHxO9Sx1vLFQRxvrJO2-AjoBlqo",
                 authDomain: "e-health-8dfcf.firebaseapp.com",
+                databaseURL: "https://e-health-8dfcf-default-rtdb.europe-west1.firebasedatabase.app",
                 projectId: "e-health-8dfcf",
                 storageBucket: "e-health-8dfcf.appspot.com",
                 messagingSenderId: "297800115430",
@@ -171,14 +181,14 @@
             // Initialize Firebase
             firebase.initializeApp(firebaseConfig);
 
-
             // make auth and firestore references
             const auth = firebase.auth();
             const db = firebase.firestore();
             const functions = firebase.functions();
-
+            const storage = firebase.storage();
             // update firestore settings
             db.settings({ timestampsInSnapshots: true });
+
         </script>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
