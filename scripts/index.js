@@ -28,23 +28,23 @@ const setupUI = (user) => {
 };
 
 // setup guides
-const setupGuides = (data) => {
+const setupGuides = (data, id) => {
 
   if (data.length) {
     let html = '';
     data.forEach(doc => {
+      console.log(doc.id);
       const ehealth =doc.data();
       const li = `
-      <ul><a href="#" id="medicalTitle">${ehealth.title} </a>
-      <button type="button" onclick="deleteData()">Delete</button>
-    
-      
+      <ul data-id="${doc.id}">
+      <li><a href="#" id="medicalTitle">${ehealth.title} </a></li>
       <li><div class="collapsible-header grey lighten-4"  id="medicalDate">ΗΜΕΡΟΜΗΝΙΑ: ${ehealth.medicalHistoryDate} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΙΑΤΡΙΚΗ ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΙΑΤΡΙΚΗ ΣΥΝΤΑΓΗ: ${ehealth.content} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΠΕΡΙΓΡΑΦΗ: ${ehealth.content} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalFile"> ${ehealth.fileButton} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalDrName">ΙΑΤΡΟΣ: ${ehealth.drName} </div></li>
-      
+      <button class="btn btn-danger btn-sm my-2 ">Delete</button>
+      <br><br>
       </ul>
       
       `;
@@ -57,6 +57,19 @@ const setupGuides = (data) => {
   
 
 };
+
+
+
+//deleting documents
+guideList.addEventListener('click', e => {
+  console.log(e);
+  if(e.target.tagName==='BUTTON'){
+    const id = e.target.parentElement.getAttribute('data-id');
+    console.log(id);
+    db.collection('eHealth').doc(currentUser.uid).collection('medicalRecords').doc(id).delete();
+
+  }
+});
 
 
 
