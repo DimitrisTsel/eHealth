@@ -32,6 +32,9 @@
                     <li class="logged-in" style="display: none;">
                         <a href="#" class="grey-text modal-trigger" data-target="modal-portfolio">Medical History</a>
                     </li>
+                    <li class="logged-in" style="display: none;">
+                        <a href="#" class="grey-text modal-trigger" onclick="forum()">Forum</a>
+                    </li>
                    
                     <li class="logged-out" style="display: none;">
                         <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
@@ -44,7 +47,11 @@
         </nav>
 
 
-
+        <script>
+            function forum(){
+                window.location.href="forum.html";
+            }
+        </script>
 
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
