@@ -12,9 +12,11 @@ class ChatUI {
       );
       const html = `
         <li class="list-group-item">
-          <span class="username">${data.username}</span>
+          <span class="username"><b>${data.username}</b></span>
+          <br>
           <span class="message">${data.message}</span>
-          <div class="time">${when}</span>
+          <br><br>
+          <div class="time"><small><i>${when}</i></small></span>
         </li>
       `;
       this.list.innerHTML += html;

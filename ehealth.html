@@ -10,7 +10,7 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     
          <script src="https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
-           <script src="pdf.js"></script>
+           <script src="scripts/pdf.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script> 
         <title>eHealth</title>
     </head>
@@ -24,78 +24,83 @@
                 </a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li class="logged-in" style="display: none;">
-                        <a href="#" class="grey-text modal-trigger" data-target="modal-account">Acount</a>
+                        <a href="#" class="grey-text modal-trigger" data-target="modal-account">Λογαριασμός</a>
                     </li>
                     <li class="logged-in" style="display: none;">
-                        <a href="#" class="grey-text" id="logout">Logout</a>
+                        <a href="#" class="grey-text modal-trigger" data-target="modal-portfolio">Καταχώρηση</a>
                     </li>
-                    <li class="logged-in" style="display: none;">
-                        <a href="#" class="grey-text modal-trigger" data-target="modal-portfolio">Medical History</a>
-                    </li>
-                    <li class="logged-in" style="display: none;">
+                    <li>
                         <a href="#" class="grey-text modal-trigger" onclick="forum()">Forum</a>
                     </li>
                    
                     <li class="logged-out" style="display: none;">
-                        <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+                        <a href="#" class="grey-text modal-trigger" data-target="modal-login">Είσοδος</a>
                     </li>
                     <li class="logged-out" style="display: none;">
-                        <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+                        <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Εγγραφή</a>
+                    </li>
+                    <li class="logged-in" style="display: none;">
+                        <a href="#" class="grey-text" id="logout">Έξοδος</a>
+                    </li>
+                    <li>
+                        <a href="#" class="grey-text modal-trigger" onclick="ContactUs()">Επικοινωνία</a>
                     </li>
                 </ul>
             </div>
         </nav>
-
 
         <script>
             function forum(){
                 window.location.href="forum.html";
             }
         </script>
+        <script>
+            function ContactUs(){
+              window.location.href="contactUs.html"
+            }
+          </script>
 
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
             <div class="modal-content">
-                <h4>Sign up</h4><br />
+                <h4>Εγγραφή</h4><br />
                 <form id="signup-form">
                     <div class="input-field">
                         <input type="email" id="signup-email" required />
-                        <label for="signup-email">Email address</label>
+                        <label for="signup-email">Email</label>
                     </div>
                     <div class="input-field">
                         <input type="password" id="signup-password" required />
-                        <label for="signup-password">Choose password</label>
+                        <label for="signup-password">Κωδικός χρήστη</label>
                     </div>
                     <div class="input-field">
                         <input type="password" id="signup-confirmPassword" required />
-                        <label for="signup-confirmPassword">Confirm Password</label>
+                        <label for="signup-confirmPassword">Επαλήθευση κωδικού χρήστη</label>
                     </div>
                     <div class="input-field">
                         <input type="text" id="signup-fullname" required />
-                        <label for="signup-fullname">Full Name</label>
+                        <label for="signup-fullname">Ονοματεπώνυμο</label>
                     </div>
-                    <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+                    <button class="btn yellow darken-2 z-depth-0">Εγγραφή</button>
                     <p class="error pink-text center-align"></p>
                 </form>
             </div>
         </div>
 
-
-
         <!-- LOGIN MODAL -->
         <div id="modal-login" class="modal">
             <div class="modal-content">
-                <h4>Login</h4><br />
+                <h4>Είσοδος</h4><br />
                 <form id="login-form">
                     <div class="input-field">
                         <input type="email" id="login-email" required />
-                        <label for="login-email">Email address</label>
+                        <label for="login-email">Email</label>
                     </div>
                     <div class="input-field">
                         <input type="password" id="login-password" required />
-                        <label for="login-password">Your password</label>
+                        <label for="login-password">Κωδικός χρήστη</label>
                     </div>
-                    <button class="btn yellow darken-2 z-depth-0">Login</button>
+                    <button class="btn yellow darken-2 z-depth-0">Είσοδος</button>
                     <p class="error pink-text center-align"></p>
                 </form>
             </div>
@@ -104,7 +109,7 @@
         <!-- ACCOUNT MODAL -->
         <div id="modal-account" class="modal">
             <div class="modal-content center-align">
-                <h4>Account Details</h4><br />
+                <h4 style="color: #5ea598"><i>Λογαριασμός χρήστη</i></h4><br />
                 <div class="account-details"></div>
             </div>
         </div>
@@ -112,68 +117,52 @@
         <!-- CREATE Medical Records -->
         <div id="modal-portfolio" class="modal">
             <div class="modal-content">
-                <h4>Medical Records</h4><br />
+                <h4 style="color: #5ea598"><i>Καταγραφή Ιατρικού Συμβάντος</i></h4><br/>
+
+                   
                 <form id="create-form">
 
                     <div class="input-field">
                         <input type="text" id="title" required>
-                        <label for="title">Event Description</label>
+                        <label for="title">Κατηγορία Ιατρικού Συμβάντος</label>
                     </div>
-                        
-<!--
-                 <div class="input-field">    
-                    <select name="title" id="title">
-                            <option value="">Event Description</option>
-                            <option value="1">Φάρμακα</option>
-                            <option value="2">Εμβολιασμός</option>
-                            <option value="3">Παρακλινικές Εξετάσεις</option> 
-                        </select> 
-                    </div>
--->
+
                     <div class="input-field">
                         <input type="date" id="medicalHistoryDate" required>
-                        <label for="medicalHistoryDate">Date</label>
+                        <label for="medicalHistoryDate">Ημερομηνία</label>
                     </div>
                     <div class="input-field">
                         <textarea id="diagnosis" class="materialize-textarea" required></textarea>
-                        <label for="diagnosis">Diagnosis</label>
+                        <label for="diagnosis">Διάγνωση</label>
                     </div>
                     <div class="input-field">
                         <textarea id="content" class="materialize-textarea"></textarea>
-                        <label for="content">Description</label>
-                    </div>
-                    <div class="input-field">
-                        <label for="file">File</label>
-                        <br><br>
-                        <input type="file" id="fileButton">
-                        
+                        <label for="content">Περιγραφή</label>
                     </div>
                     <div class="input-field">
                         <input type="text" id="drName" required>
-                        <label for="drName">Dr's Name</label>
+                        <label for="drName">Ιατρός</label>
                     </div>
-                    <button class="btn yellow darken-2 z-depth-0">Create</button>
+                    <button class="btn yellow darken-2 z-depth-0">Καταχώρηση</button>
                 </form>
             </div>
         </div>
 
         
-        <!-- GUIDE LIST -->
+        <!-- Download list -->
         <div class="container" style="margin-top: 40px;">
             <div class="logged-in">
              <button class="btn btn-primary" onclick="generatePDF()">Download PDF</button>
             </div>
-             <input class="logged-in" type="text" id="myInput" onkeyup="myFunction()" placeholder="Type to search">
+             <input class="logged-in" type="text" id="myInput" onkeyup="myFunction()" placeholder="Αναζήτηση">
             <ul class="eHealth"  id="eHealth" style="border: none;">
 
             </ul>
         </div>
-          
 
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
-        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-functions.js"></script>
         <script>
             // Initialize Firebase
             var firebaseConfig = {
@@ -191,16 +180,16 @@
             // make auth and firestore references
             const auth = firebase.auth();
             const db = firebase.firestore();
-            const functions = firebase.functions();
-            const storage = firebase.storage();
+
             // update firestore settings
             db.settings({ timestampsInSnapshots: true });
-
         </script>
+
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="scripts/auth.js"></script>
         <script src="scripts/index.js"></script>
+
     </body>
 
 </html>

@@ -1,6 +1,5 @@
 // DOM elements
-const guideList = document.querySelector('.eHealth');
-const allergyList = document.querySelector('.allergies');
+const eHealthList = document.querySelector('.eHealth');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 const accountDetails = document.querySelector('.account-details');
@@ -10,8 +9,8 @@ const setupUI = (user) => {
     // account info
     db.collection('users').doc(user.uid).get().then(doc => {
       const html = `
-        <div>Logged in as ${user.email}</div>
-        <div>${doc.data().fullname}</div>
+        <div><strong>Email: </strong> ${user.email}</div>
+        <div><strong>Ονοματεπώνυμο: </strong> ${doc.data().fullname}</div>
       `;
       accountDetails.innerHTML = html;
     });
@@ -28,7 +27,7 @@ const setupUI = (user) => {
 };
 
 // setup guides
-const setupGuides = (data, id) => {
+const setupMedical = (data, id) => {
 
   if (data.length) {
     let html = '';
@@ -37,22 +36,21 @@ const setupGuides = (data, id) => {
       const ehealth =doc.data();
       const li = `
       <ul data-id="${doc.id}">
-      <li><a href="#" id="medicalTitle">${ehealth.title} </a></li>
-      <li><div class="collapsible-header grey lighten-4"  id="medicalDate">ΗΜΕΡΟΜΗΝΙΑ: ${ehealth.medicalHistoryDate} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">ΔΙΑΓΝΩΣΗ: ${ehealth.diagnosis} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">ΠΕΡΙΓΡΑΦΗ: ${ehealth.content} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalFile"> ${ehealth.fileButton} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalDrName">ΙΑΤΡΟΣ: ${ehealth.drName} </div></li>
-      <button class="btn btn-danger btn-sm my-2 ">Delete</button>
+      <li><h5><a href="#" id="medicalTitle">${ehealth.title} </a></h5></li>
+      <li><div class="collapsible-header grey lighten-4"  id="medicalDate">Ημερομηνία: ${ehealth.medicalHistoryDate} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">Δάγνωση: ${ehealth.diagnosis} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">Περιγραφή: ${ehealth.content} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDrName">Ιατρός: ${ehealth.drName} </div></li>
+      <button class="btn btn-danger btn-sm my-2 ">Διαγραφή</button>
       <br><br>
       </ul>
       
       `;
       html += li;
     });
-    guideList.innerHTML = html
+    eHealthList.innerHTML = html
   } else {
-    guideList.innerHTML = '<h5 class="center-align"></h5>';
+    eHealthList.innerHTML = '<h5 class="center-align"></h5>';
   }
   
 
@@ -61,7 +59,7 @@ const setupGuides = (data, id) => {
 
 
 //deleting documents
-guideList.addEventListener('click', e => {
+eHealthList.addEventListener('click', e => {
   console.log(e);
   if(e.target.tagName==='BUTTON'){
     const id = e.target.parentElement.getAttribute('data-id');
@@ -81,23 +79,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
   var items = document.querySelectorAll('.collapsible');
   M.Collapsible.init(items);
-
-});
-
-
-
-//Get elements
-var fileButton = document.getElementById('fileButton');
-storage = customApp.storage("gs://e-health-8dfcf.appspot.com");
-
-//Listen for file selection
-fileButton.addEventListener('change',function(e){
-  //Get file
-  var file = e.target.files[0];
-
-  //create storage ref
-  var spaceRef = storageRef.child('Medical_Files/'+ file.name);
-  //upload file
-  var task = storageRef.put(file);
 
 });

@@ -3,35 +3,16 @@ auth.onAuthStateChanged(user => {
     if (user) {
         currentUser = auth.currentUser;
         db.collection('eHealth').doc(currentUser.uid).collection('medicalRecords').onSnapshot(snapshot => {
-            setupGuides(snapshot.docs);
+            setupMedical(snapshot.docs);
             setupUI(user);
         }, err => console.log(err.message));
     } else {
         setupUI();
-        setupGuides([]);
+        setupMedical([]);
     }
 });
 
-// const medicalList = document.querySelector('#medicalTitle');
-// function renderMedical(doc){
-//     let li = document.createElement('li');
-//     let cross = document.createElement('div');
-//     cross.textContent = 'x';
-//     li.setAttribute('data-id', doc.id);
-//     li.appendChild(cross);
-//     medicalList.appendChild(li);
-//      // deleting data
-//      cross.addEventListener('click', (e) => {
-//         e.stopPropagation();
-//         let id = e.target.parentElement.parentElement.getAttribute('data-id');
-//         db.collection('eHealth').doc(currentUser.uid).collection('medicalRecords').doc(id).delete();
-//     });
-// }
-   
-
-  
-
-// create new guide
+// create new medical record
 const createForm = document.querySelector('#create-form');
 createForm.addEventListener('submit', (e) => {
     e.preventDefault();
@@ -40,7 +21,7 @@ createForm.addEventListener('submit', (e) => {
         medicalHistoryDate: createForm.medicalHistoryDate.value,
         diagnosis: createForm.diagnosis.value,
         content: createForm.content.value,
-        fileButton: createForm.fileButton.value,
+        // fileButton: createForm.fileButton.value,
         drName: createForm.drName.value
     }).then(() => {
         // close the create modal & reset form
@@ -74,7 +55,7 @@ signupForm.addEventListener('submit', (e) => {
         signupForm.reset();
         }); 
     }else{
-        alert('Confirm password must be the same with the password')
+        alert('Ο κωδικός επαλήθευσης πρέπει να ταιριάζει με τον κωδικό χρήστη')
     }
 });
 
@@ -100,6 +81,8 @@ loginForm.addEventListener('submit', (e) => {
         const modal = document.querySelector('#modal-login');
         M.Modal.getInstance(modal).close();
         loginForm.reset();
+    }).catch((err) =>{
+        alert('Δεν βρέθηκε χρήστης!' + '\nΕλέγξτε email και κωδικό χρήστη!');
     });
 
 });

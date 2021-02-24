@@ -1,0 +1,48 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+.nav{
+    display: flex; 
+    font-style:normal;
+    padding-left: 30%;
+    padding-right: 10%;
+ }
+ .nav a{
+    color: #b3b3b3;
+    margin-left: 30%;
+}
+
+.navgif a{
+    margin-left: 15%;
+}
+body{
+    padding-top: 0%;
+}
+h1{
+    color: #5ea598;
+    text-align: center;
+    padding-bottom: 10px;
+}
+input,textarea{
+    padding: 15px;
+    border-radius: 12px;
+}
+.container{
+    width: 50vw;
+    margin: auto;
+}
+
+button{
+    width: 40%;
+    position: relative;
+    left: 30%;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
+    background-color:#5ea598;
+}
+.form-item{
+    display: grid;
+}
+ 

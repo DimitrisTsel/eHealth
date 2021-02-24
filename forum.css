@@ -13,10 +13,9 @@
 
 .nav{
    display: flex; 
-   font-style:focus;
+   font-style:normal;
    padding-left: 30%;
    padding-right: 10%;
-   pointer-events: painted; 
 }
 
 .nav a{
@@ -27,3 +26,4 @@
 .navgif a{
     margin-left: 15%;
 }
+
