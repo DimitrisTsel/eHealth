@@ -38,7 +38,7 @@ const setupMedical = (data, id) => {
       <ul data-id="${doc.id}">
       <li><h5><a href="#" id="medicalTitle">${ehealth.title} </a></h5></li>
       <li><div class="collapsible-header grey lighten-4"  id="medicalDate">Ημερομηνία: ${ehealth.medicalHistoryDate} </div></li>
-      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">Δάγνωση: ${ehealth.diagnosis} </div></li>
+      <li><div class="collapsible-header grey lighten-4" id="medicalDiagnosis">Διάγνωση: ${ehealth.diagnosis} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalPrescription">Περιγραφή: ${ehealth.content} </div></li>
       <li><div class="collapsible-header grey lighten-4" id="medicalDrName">Ιατρός: ${ehealth.drName} </div></li>
       <button class="btn btn-danger btn-sm my-2 ">Διαγραφή</button>
