@@ -1,7 +1,7 @@
 # Medical History Management Web Application
 
 ## Overview
-This project was an application implemented for the purpose of the course: **Information Systems - web applications** during my **MSc in Advanced Information Systems**.
+This project is an application implemented for the purpose of the course: **Information Systems - web applications** during my **MSc in Advanced Information Systems**.
 This web application is developed for monitoring and managing medical history records. The purpose of this project is to develop an information system related to 
 electronic medical records. The implemented system aims to provide the ability to record and monitor medical events for its users, in an effort to address the need 
 for easier access to sensitive data, such as medical history.
